@@ -1,0 +1,1256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Special Gift For You 💝 - Happy New Year 2025</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #ec4899 100%);
+            overflow-x: hidden;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1000px;
+            width: 90%;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+
+        .header {
+            text-align: center;
+            padding: 40px 20px;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .header .flowers {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            animation: float 3s ease-in-out infinite;
+            display: inline-block;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(5deg); }
+        }
+
+        .header p {
+            font-size: 1.3rem;
+            opacity: 0.95;
+            margin-top: 10px;
+        }
+
+        /* Countdown Timer */
+        .countdown {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 30px 0;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .countdown h2 {
+            color: white;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .countdown-timer {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .time-unit {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 15px 20px;
+            border-radius: 10px;
+            color: white;
+            min-width: 70px;
+        }
+
+        .time-unit .number {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+
+        .time-unit .label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* Navigation Tabs */
+        .nav-tabs {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 30px 0;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid transparent;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .nav-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+        }
+
+        .nav-btn.active {
+            background: white;
+            color: #764ba2;
+            border-color: white;
+        }
+
+        /* Section Styles */
+        .section {
+            display: none;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+
+        .section.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+
+        /* Gift Box Styles */
+        .gift-section {
+            text-align: center;
+        }
+
+        .gift-box {
+            width: 220px;
+            height: 220px;
+            margin: 30px auto;
+            position: relative;
+            cursor: pointer;
+            perspective: 1000px;
+            transition: transform 0.3s ease;
+        }
+
+        .gift-box:hover {
+            transform: scale(1.08);
+        }
+
+        .box {
+            width: 100%;
+            height: 85%;
+            background: linear-gradient(135deg, #ff69b4 0%, #ff1493 100%);
+            border-radius: 10px;
+            position: relative;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+            transition: all 0.6s ease;
+            transform-style: preserve-3d;
+        }
+
+        .gift-box.opened .box {
+            opacity: 0;
+            transform: scaleY(0) translateY(-50px);
+        }
+
+        .lid {
+            width: 100%;
+            height: 15%;
+            background: linear-gradient(135deg, #ffb6c1 0%, #ff69b4 100%);
+            border-radius: 50% 50% 0 0;
+            position: absolute;
+            bottom: 85%;
+            transition: all 0.6s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transform-style: preserve-3d;
+        }
+
+        .gift-box.opened .lid {
+            transform: rotateX(120deg);
+            opacity: 0;
+        }
+
+        .ribbon {
+            position: absolute;
+            background: gold;
+            z-index: 10;
+        }
+
+        .ribbon-vertical {
+            width: 20px;
+            height: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            top: 0;
+        }
+
+        .ribbon-horizontal {
+            height: 20px;
+            width: 100%;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .bow {
+            width: 50px;
+            height: 50px;
+            background: gold;
+            border-radius: 50%;
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 15;
+        }
+
+        .gift-content {
+            opacity: 0;
+            transform: scale(0.5) translateY(100px);
+            transition: all 0.8s ease 0.3s;
+            pointer-events: none;
+        }
+
+        .gift-box.opened .gift-content {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+            pointer-events: auto;
+        }
+
+        .click-hint {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 1.1rem;
+            animation: pulse 2s ease-in-out infinite;
+            margin-top: 15px;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* Letter Styles */
+        .letter {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+            text-align: left;
+            line-height: 1.8;
+            margin: 20px 0;
+        }
+
+        .letter h2 {
+            color: #764ba2;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+
+        .letter p {
+            color: #555;
+            margin-bottom: 15px;
+            font-size: 1.05rem;
+        }
+
+        .letter-signature {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #667eea;
+            text-align: right;
+            color: #764ba2;
+            font-style: italic;
+        }
+
+        /* Gallery Styles */
+        .gallery {
+            background: white;
+            padding: 35px;
+            border-radius: 15px;
+            margin: 20px 0;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+        }
+
+        .gallery h3 {
+            color: #764ba2;
+            margin-bottom: 25px;
+            font-size: 1.6rem;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+            gap: 12px;
+        }
+
+        .gallery-item {
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 3px solid #667eea;
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.15) rotate(5deg);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5);
+        }
+
+        /* Timeline Styles */
+        .timeline {
+            background: white;
+            padding: 35px;
+            border-radius: 15px;
+            margin: 20px 0;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+        }
+
+        .timeline h3 {
+            color: #764ba2;
+            margin-bottom: 30px;
+            font-size: 1.6rem;
+            text-align: center;
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 25px;
+            padding-bottom: 25px;
+            border-bottom: 2px solid #f0f0f0;
+            position: relative;
+        }
+
+        .timeline-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .timeline-dot {
+            width: 15px;
+            height: 15px;
+            background: #667eea;
+            border-radius: 50%;
+            margin-top: 5px;
+            flex-shrink: 0;
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.2);
+        }
+
+        .timeline-content {
+            flex: 1;
+        }
+
+        .timeline-date {
+            color: #764ba2;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .timeline-title {
+            color: #333;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .timeline-description {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Memories Section */
+        .memories-section {
+            background: white;
+            padding: 35px;
+            border-radius: 15px;
+            margin: 20px 0;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+        }
+
+        .memories-section h3 {
+            color: #764ba2;
+            margin-bottom: 25px;
+            font-size: 1.6rem;
+            text-align: center;
+        }
+
+        .memories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .memory-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            overflow: hidden;
+            aspect-ratio: 1;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 250px;
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.3);
+            position: relative;
+        }
+
+        .memory-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.5);
+        }
+
+        .memory-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .memory-placeholder {
+            text-align: center;
+            color: white;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .memory-placeholder-text {
+            font-size: 0.9rem;
+            margin-top: 10px;
+            opacity: 0.9;
+        }
+
+        /* Reasons Section */
+        .reasons-section {
+            background: white;
+            padding: 35px;
+            border-radius: 15px;
+            margin: 20px 0;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+        }
+
+        .reasons-section h3 {
+            color: #764ba2;
+            margin-bottom: 25px;
+            font-size: 1.6rem;
+            text-align: center;
+        }
+
+        .reasons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .reason-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            border-radius: 12px;
+            color: white;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .reason-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .reason-emoji {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .reason-title {
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+
+        .reason-description {
+            font-size: 0.95rem;
+            opacity: 0.9;
+            line-height: 1.5;
+        }
+
+        /* Message Section */
+        .message-section {
+            background: white;
+            padding: 35px;
+            border-radius: 15px;
+            margin: 20px 0;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+        }
+
+        .message-section h3 {
+            color: #764ba2;
+            margin-bottom: 20px;
+            font-size: 1.6rem;
+        }
+
+        .message-section p {
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 15px;
+            font-size: 1.05rem;
+        }
+
+        .message-section ul {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .message-section li {
+            color: #555;
+            padding: 12px;
+            margin: 10px 0;
+            background: #f5f5f5;
+            border-left: 4px solid #667eea;
+            border-radius: 5px;
+            font-size: 1.05rem;
+        }
+
+
+        .confetti {
+            position: fixed;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        /* Music Player */
+        .music-player {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .music-btn {
+            background: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            color: #764ba2;
+            font-weight: 600;
+        }
+
+        .music-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .music-note {
+            display: inline-block;
+            animation: bounce 1.4s infinite;
+            margin: 0 5px;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            color: white;
+            padding: 30px 20px;
+            margin-top: 40px;
+            font-size: 0.95rem;
+        }
+
+        .footer p {
+            opacity: 0.9;
+            margin: 5px 0;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .header .flowers {
+                font-size: 2.5rem;
+            }
+
+            .header p {
+                font-size: 1rem;
+            }
+
+            .letter {
+                padding: 20px;
+            }
+
+            .letter p {
+                font-size: 1rem;
+            }
+
+            .reasons-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-tabs {
+                gap: 8px;
+            }
+
+            .nav-btn {
+                padding: 8px 15px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="flowers">🌹 💐 🌸</div>
+            <h1>A Special Gift For You, Aya 💝</h1>
+            <p>Happy New Year 2025! Let's count down to our special anniversary together... 💕</p>
+       </div>
+
+        <!-- Countdown Timer -->
+        <div class="countdown">
+            <h2>💕 Countdown to Our Anniversary (July 7) 💕</h2>
+            <div class="countdown-timer">
+                <div class="time-unit">
+                    <div class="number" id="days">0</div>
+                    <div class="label">Days</div>
+                </div>
+                <div class="time-unit">
+                    <div class="number" id="hours">0</div>
+                    <div class="label">Hours</div>
+                </div>
+                <div class="time-unit">
+                    <div class="number" id="minutes">0</div>
+                    <div class="label">Minutes</div>
+                </div>
+                <div class="time-unit">
+                    <div class="number" id="seconds">0</div>
+                    <div class="label">Seconds</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <div class="nav-tabs">
+            <button class="nav-btn active" data-tab="message">💌 Letter</button>
+            <button class="nav-btn" data-tab="memories">📸 Memories</button>
+            <button class="nav-btn" data-tab="reasons">❤️ Why I Love You</button>
+            <button class="nav-btn" data-tab="timeline">📅 Our Timeline</button>
+            <button class="nav-btn" data-tab="wishes">🌟 2025 Wishes</button>
+        </div>
+
+        <!-- Gift Section (Hidden) -->
+        <div id="gift" class="section gift-section" style="display: none;">
+            <div class="gift-box" id="giftBox">
+                <div class="lid"></div>
+                <div class="box">
+                    <div class="ribbon ribbon-vertical"></div>
+                    <div class="ribbon ribbon-horizontal"></div>
+                    <div class="bow"></div>
+                </div>
+                <div class="gift-content">
+                    <div class="letter">
+                        <h2>Welcome! 🎉</h2>
+                        <p>
+                            You've opened a special gift created just for you! This website contains my feelings, memories, and dreams for us. Take your time to explore everything. Each section has something meaningful prepared with love.
+                        </p>
+                        <p>
+                            I wanted to make something unique and personal because you deserve to feel how special you are to me. Now click on the different sections to see more!
+                        </p>
+                        <div class="letter-signature">
+                            With all my love 💕
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p class="click-hint" id="clickHint">👆 Click the gift box above 👆</p>
+        </div>
+
+        <!-- Letter Section -->
+        <div id="message" class="section active">
+            <div class="letter">
+                <h2>Dear Aya 💕</h2>
+                <p>
+                    I still remember that moment on HelloTalk when you sent me that first message. You took a chance approaching someone older than you, and I was hesitant at first. I wanted to protect you, so I kept my distance and treated you like a sister. But life had other plans...
+                </p>
+                <p>
+                    Somewhere along those 5 months, everything changed. I didn't plan to develop feelings for you, but it happened so naturally. Your kindness, your laugh, the way you see the world—I fell for all of it. And now, here we are, officially celebrating our love since July 7, 2025.
+                </p>
+                <p>
+                    Even though we're miles apart, our late-night calls, gaming sessions, and watching movies together have become the highlight of my days. You've made the distance feel smaller with every moment we share. Your smile through the screen brightens my darkest days, and your laugh is the best sound I could ever hear.
+                </p>
+                <p>
+                    This past year has been amazing because you came into my life. You've turned ordinary moments into something extraordinary. From midnight conversations to those silly gaming moments, I treasure every second we spend together.
+                </p>
+                <p>
+                    As we step into 2025, I want you to know that I'm so excited for our future together. I want to close this distance one day, build real memories with you, make you smile even more, and show you every single day how much you mean to me.
+                </p>
+                <p>
+                    Thank you for being brave enough to message me first. Thank you for being patient with me. Thank you for being mine. You are my favorite person, my adventure, and my heart.
+                </p>
+                <div class="letter-signature">
+                    Forever yours,<br>
+                    The one who loves you more each day 💚
+                </div>
+            </div>
+        </div>
+
+        <!-- Memories Section -->
+        <div id="memories" class="section">
+            <div class="memories-section">
+                <h3>📸 Aya, You're So Beautiful 📸</h3>
+                <p style="text-align: center; color: #666; margin-bottom: 30px; font-size: 1.05rem;">
+                    Your beautiful photos that I absolutely love. Each one reminds me why I love you so much.
+                </p>
+                <div class="memories-grid">
+                    <div class="memory-card">
+                        <img src="photos/photo_2025-12-27_22-29-30.jpg" alt="Aya" class="memory-image">
+                    </div>
+                    <div class="memory-card">
+                        <img src="photos/photo_2025-12-27_22-29-46.jpg" alt="Aya" class="memory-image">
+                    </div>
+                    <div class="memory-card">
+                        <img src="photos/photo_2025-12-27_22-30-16.jpg" alt="Aya" class="memory-image">
+                    </div>
+                    <div class="memory-card">
+                        <img src="photos/photo_2025-12-27_22-32-30 (2).jpg" alt="Aya" class="memory-image">
+                    </div>
+                    <div class="memory-card">
+                        <img src="photos/photo_2025-12-27_22-32-30 (3).jpg" alt="Aya" class="memory-image">
+                    </div>
+                    <div class="memory-card">
+                        <img src="photos/photo_2025-12-27_22-32-30 (4).jpg" alt="Aya" class="memory-image">
+                    </div>
+                    <div class="memory-card">
+                        <img src="photos/photo_2025-12-27_22-32-30 (5).jpg" alt="Aya" class="memory-image">
+                    </div>
+                    <div class="memory-card">
+                        <img src="photos/photo_2025-12-27_22-32-30 (6).jpg" alt="Aya" class="memory-image">
+                    </div>
+                    <div class="memory-card">
+                        <img src="photos/photo_2025-12-27_22-32-30 (7).jpg" alt="Aya" class="memory-image">
+                    </div>
+                    <div class="memory-card">
+                        <img src="photos/photo_2025-12-27_22-32-30 (8).jpg" alt="Aya" class="memory-image">
+                    </div>
+                    <div class="memory-card">
+                        <img src="photos/photo_2025-12-27_22-32-30 (9).jpg" alt="Aya" class="memory-image">
+                    </div>
+                    <div class="memory-card">
+                        <img src="photos/photo_2025-12-27_22-32-30 (10).jpg" alt="Aya" class="memory-image">
+                    </div>
+                    <div class="memory-card">
+                        <img src="photos/photo_2025-12-27_22-32-30 (11).jpg" alt="Aya" class="memory-image">
+                    </div>
+                    <div class="memory-card">
+                        <img src="photos/photo_2025-12-27_22-32-30 (12).jpg" alt="Aya" class="memory-image">
+                    </div>
+                    <div class="memory-card">
+                        <img src="photos/photo_2025-12-27_22-32-30.jpg" alt="Aya" class="memory-image">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Reasons I Love You -->
+        <div id="reasons" class="section">
+            <div class="reasons-section">
+                <h3>💖 50 Reasons I Love You, Aya (And Then Some...)</h3>
+                <div class="reasons-grid">
+                    <div class="reason-card">
+                        <div class="reason-emoji">😊</div>
+                        <div class="reason-title">Your Smile</div>
+                        <div class="reason-description">It lights up the room and makes my heart skip a beat every time.</div>
+                    </div>
+                    <div class="reason-card">
+                        <div class="reason-emoji">😂</div>
+                        <div class="reason-title">Your Laugh</div>
+                        <div class="reason-description">Pure, genuine, and contagious—I could hear it forever.</div>
+                    </div>
+                    <div class="reason-card">
+                        <div class="reason-emoji">💚</div>
+                        <div class="reason-title">Your Kindness</div>
+                        <div class="reason-description">The way you care about others shows your beautiful heart.</div>
+                    </div>
+                    <div class="reason-card">
+                        <div class="reason-emoji">🧠</div>
+                        <div class="reason-title">Your Intelligence</div>
+                        <div class="reason-description">Your perspective makes me think differently about things.</div>
+                    </div>
+                    <div class="reason-card">
+                        <div class="reason-emoji">✨</div>
+                        <div class="reason-title">Your Beauty</div>
+                        <div class="reason-description">Inside and out, you're absolutely stunning to me.</div>
+                    </div>
+                    <div class="reason-card">
+                        <div class="reason-emoji">💪</div>
+                        <div class="reason-title">Your Strength</div>
+                        <div class="reason-description">The way you face challenges inspires me every day.</div>
+                    </div>
+                    <div class="reason-card">
+                        <div class="reason-emoji">🎨</div>
+                        <div class="reason-title">Your Creativity</div>
+                        <div class="reason-description">Your unique ideas and perspectives are so refreshing.</div>
+                    </div>
+                    <div class="reason-card">
+                        <div class="reason-emoji">👂</div>
+                        <div class="reason-title">You Listen</div>
+                        <div class="reason-description">You actually hear me, understand me, and care about what I say.</div>
+                    </div>
+                    <div class="reason-card">
+                        <div class="reason-emoji">🌈</div>
+                        <div class="reason-title">You Make Me Better</div>
+                        <div class="reason-description">Being with you brings out the best version of myself.</div>
+                    </div>
+                    <div class="reason-card">
+                        <div class="reason-emoji">❤️</div>
+                        <div class="reason-title">Your Heart</div>
+                        <div class="reason-description">It's pure gold, and I feel blessed to be loved by you.</div>
+                    </div>
+                    <div class="reason-card">
+                        <div class="reason-emoji">🌸</div>
+                        <div class="reason-title">Your Gentle Nature</div>
+                        <div class="reason-description">The softness and grace you bring to everything you do.</div>
+                    </div>
+                    <div class="reason-card">
+                        <div class="reason-emoji">🎵</div>
+                        <div class="reason-title">The Way You Sing</div>
+                        <div class="reason-description">Even when you think no one's listening, it's beautiful.</div>
+                    </div>
+                    <div class="reason-card">
+                        <div class="reason-emoji">🤗</div>
+                        <div class="reason-title">Your Hugs</div>
+                        <div class="reason-description">They make everything feel better and safer immediately.</div>
+                    </div>
+                    <div class="reason-card">
+                        <div class="reason-emoji">🌟</div>
+                        <div class="reason-title">Your Ambitions</div>
+                        <div class="reason-description">You dream big and I love seeing you chase those dreams.</div>
+                    </div>
+                    <div class="reason-card">
+                        <div class="reason-emoji">👀</div>
+                        <div class="reason-title">The Way You Look at Me</div>
+                        <div class="reason-description">With such warmth and genuine love in your eyes.</div>
+                    </div>
+                    <div class="reason-card">
+                        <div class="reason-emoji">💭</div>
+                        <div class="reason-title">Your Deep Thoughts</div>
+                        <div class="reason-description">The meaningful conversations we have inspire me.</div>
+                    </div>
+                    <div class="reason-card">
+                        <div class="reason-emoji">🎁</div>
+                        <div class="reason-title">Your Thoughtfulness</div>
+                        <div class="reason-description">You remember the little things that matter to me.</div>
+                    </div>
+                    <div class="reason-card">
+                        <div class="reason-emoji">😍</div>
+                        <div class="reason-title">How You Make Me Feel</div>
+                        <div class="reason-description">Like I'm the most special person in your world.</div>
+                    </div>
+                    <div class="reason-card">
+                        <div class="reason-emoji">🌺</div>
+                        <div class="reason-title">Your Elegance</div>
+                        <div class="reason-description">The way you carry yourself with such grace.</div>
+                    </div>
+                    <div class="reason-card">
+                        <div class="reason-emoji">🎯</div>
+                        <div class="reason-title">Your Focus</div>
+                        <div class="reason-description">You're driven and determined in the best ways.</div>
+                    </div>
+                    <div class="reason-card">
+                        <div class="reason-emoji">🌍</div>
+                        <div class="reason-title">Your Perspective</div>
+                        <div class="reason-description">You help me see the world in beautiful new ways.</div>
+                    </div>
+                    <div class="reason-card">
+                        <div class="reason-emoji">🤝</div>
+                        <div class="reason-title">Your Loyalty</div>
+                        <div class="reason-description">You're always there for me, no matter what.</div>
+                    </div>
+                    <div class="reason-card">
+                        <div class="reason-emoji">💬</div>
+                        <div class="reason-title">Your Sense of Humor</div>
+                        <div class="reason-description">You make me laugh until my stomach hurts.</div>
+                    </div>
+                    <div class="reason-card">
+                        <div class="reason-emoji">🏆</div>
+                        <div class="reason-title">Your Competence</div>
+                        <div class="reason-description">You're capable and confident in all you do.</div>
+                    </div>
+                    <div class="reason-card">
+                        <div class="reason-emoji">🌙</div>
+                        <div class="reason-title">Late Night Talks</div>
+                        <div class="reason-description">Those endless conversations are my favorite.</div>
+                    </div>
+                    <div class="reason-card">
+                        <div class="reason-emoji">☀️</div>
+                        <div class="reason-title">Every Morning With You</div>
+                        <div class="reason-description">Starting each day together is a blessing.</div>
+                    </div>
+                    <div class="reason-card">
+                        <div class="reason-emoji">🍽️</div>
+                        <div class="reason-title">Meal Times Together</div>
+                        <div class="reason-description">Even simple meals become special with you.</div>
+                    </div>
+                    <div class="reason-card">
+                        <div class="reason-emoji">🚗</div>
+                        <div class="reason-title">Car Rides With You</div>
+                        <div class="reason-description">Music, laughter, and you—perfect combination.</div>
+                    </div>
+                    <div class="reason-card">
+                        <div class="reason-emoji">🏠</div>
+                        <div class="reason-title">Home With You</div>
+                        <div class="reason-description">Anywhere is home when you're there.</div>
+                    </div>
+                    <div class="reason-card">
+                        <div class="reason-emoji">🎬</div>
+                        <div class="reason-title">Movie Nights</div>
+                        <div class="reason-description">Cuddled up next to you is all I need.</div>
+                    </div>
+                    <div class="reason-card">
+                        <div class="reason-emoji">🍪</div>
+                        <div class="reason-title">Your Little Quirks</div>
+                        <div class="reason-description">All those tiny habits make you perfectly you.</div>
+                    </div>
+                    <div class="reason-card">
+                        <div class="reason-emoji">🎪</div>
+                        <div class="reason-title">Adventures Together</div>
+                        <div class="reason-description">Exploring the world with you is exciting.</div>
+                    </div>
+                    <div class="reason-card">
+                        <div class="reason-emoji">💐</div>
+                        <div class="reason-title">How You Brighten My Days</div>
+                        <div class="reason-description">Your presence alone changes everything.</div>
+                    </div>
+                    <div class="reason-card">
+                        <div class="reason-emoji">🎓</div>
+                        <div class="reason-title">What You Teach Me</div>
+                        <div class="reason-description">I grow as a person because of you.</div>
+                    </div>
+                    <div class="reason-card">
+                        <div class="reason-emoji">🌊</div>
+                        <div class="reason-title">Your Calmness</div>
+                        <div class="reason-description">You have a soothing effect on my soul.</div>
+                    </div>
+                    <div class="reason-card">
+                        <div class="reason-emoji">🔥</div>
+                        <div class="reason-title">Your Passion</div>
+                        <div class="reason-description">The intensity of your emotions is beautiful.</div>
+                    </div>
+                    <div class="reason-card">
+                        <div class="reason-emoji">🎀</div>
+                        <div class="reason-title">The Way You Dress</div>
+                        <div class="reason-description">Always effortlessly gorgeous to me.</div>
+                    </div>
+                    <div class="reason-card">
+                        <div class="reason-emoji">💎</div>
+                        <div class="reason-title">Your Worth</div>
+                        <div class="reason-description">You're a precious gem in my life.</div>
+                    </div>
+                    <div class="reason-card">
+                        <div class="reason-emoji">🚀</div>
+                        <div class="reason-title">Your Dreams</div>
+                        <div class="reason-description">I believe in you 100% and want to support them.</div>
+                    </div>
+                    <div class="reason-card">
+                        <div class="reason-emoji">🎉</div>
+                        <div class="reason-title">Celebrating Life With You</div>
+                        <div class="reason-description">Every moment feels like a celebration.</div>
+                    </div>
+                    <div class="reason-card">
+                        <div class="reason-emoji">🌻</div>
+                        <div class="reason-title">Your Optimism</div>
+                        <div class="reason-description">You see the good in everything and everyone.</div>
+                    </div>
+                    <div class="reason-card">
+                        <div class="reason-emoji">🦋</div>
+                        <div class="reason-title">How You Transform Me</div>
+                        <div class="reason-description">You've helped me become a better version.</div>
+                    </div>
+                    <div class="reason-card">
+                        <div class="reason-emoji">🎸</div>
+                        <div class="reason-title">Your Talents</div>
+                        <div class="reason-description">Everything you do, you do beautifully.</div>
+                    </div>
+                    <div class="reason-card">
+                        <div class="reason-emoji">🌙✨</div>
+                        <div class="reason-title">You're My Star</div>
+                        <div class="reason-description">You light up my darkest nights.</div>
+                    </div>
+                    <div class="reason-card">
+                        <div class="reason-emoji">👑</div>
+                        <div class="reason-title">You're My Queen</div>
+                        <div class="reason-description">I'd crown you with the world if I could.</div>
+                    </div>
+                    <div class="reason-card">
+                        <div class="reason-emoji">💝</div>
+                        <div class="reason-title">Your Love</div>
+                        <div class="reason-description">Is the greatest gift I could ever receive.</div>
+                    </div>
+                    <div class="reason-card">
+                        <div class="reason-emoji">🙏</div>
+                        <div class="reason-title">I'm Grateful</div>
+                        <div class="reason-description">For you and every moment we share together.</div>
+                    </div>
+                    <div class="reason-card">
+                        <div class="reason-emoji">❤️‍🔥</div>
+                        <div class="reason-title">I Love You</div>
+                        <div class="reason-description">More than words could ever express.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Timeline Section -->
+        <div id="timeline" class="section">
+            <div class="timeline">
+                <h3>📅 Our Love Story Together</h3>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">HelloTalk Message</div>
+                        <div class="timeline-title">You Took a Chance on Me</div>
+                        <div class="timeline-description">You were brave enough to message a stranger. That one message changed my life forever. I didn't know it then, but you were about to become my everything.</div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">First Few Conversations</div>
+                        <div class="timeline-title">Keeping My Distance (But Falling)</div>
+                        <div class="timeline-description">I tried to be responsible and treat you like a sister. I wanted to protect you because of our age difference. But somewhere in those conversations, I couldn't help but notice how special you are.</div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">5 Months of Connection</div>
+                        <div class="timeline-title">Feelings I Couldn't Deny</div>
+                        <div class="timeline-description">Around 5 months in, I realized I was in love with you. It wasn't just friendship anymore. Your kindness, your laugh, your heart—I fell completely for you. Fighting those feelings became impossible.</div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">July 7, 2025</div>
+                        <div class="timeline-title">We Became Official 💕</div>
+                        <div class="timeline-description">The day we stopped hiding our feelings and admitted we were in love. July 7 became the most important day of my life. Every year, I'll celebrate the day you officially became mine.</div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">Present Day</div>
+                        <div class="timeline-title">Long Distance, But Never Apart</div>
+                        <div class="timeline-description">We're miles apart, but our late-night calls, gaming sessions, and movie nights keep us connected. Every moment with you means everything. This LDR has only made me love you more.</div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">The Future</div>
+                        <div class="timeline-title">Closing The Distance</div>
+                        <div class="timeline-description">I can't wait for the day we're finally together in person. Until then, I'll love you through every call, every message, every moment. You're worth the wait, Aya.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2025 Wishes Section -->
+        <div id="wishes" class="section">
+            <div class="message-section">
+                <h3>🌟 My 2025 Wishes for You</h3>
+                <p>As we enter this new year, here's what I wish for you:</p>
+                <ul>
+                    <li>💝 May you always know how loved and appreciated you are</li>
+                    <li>🎯 May you achieve all your goals and dreams this year</li>
+                    <li>😊 May every day bring you moments of pure joy and laughter</li>
+                    <li>🌟 May you shine brighter than ever before</li>
+                    <li>💪 May you stay strong, healthy, and happy</li>
+                    <li>🤗 May you be surrounded by people who genuinely care about you</li>
+                    <li>🌈 May you find beauty in every moment, even the tough ones</li>
+                    <li>❤️ May you always remember how special you are to me</li>
+                    <li>✨ May 2025 be your best year yet</li>
+                    <li>🎊 May we create unforgettable memories together</li>
+                    <li>🚀 May you pursue your ambitions with courage and passion</li>
+                    <li>🏆 May success come your way in all you do</li>
+                    <li>🎨 May your creativity flourish and inspire others</li>
+                    <li>📚 May you continue to grow and learn every single day</li>
+                    <li>🌍 May you make a positive impact on this beautiful world</li>
+                    <li>💎 May you recognize your own worth and value</li>
+                    <li>🎭 May you embrace all your emotions and express yourself freely</li>
+                    <li>🌺 May you take care of yourself and practice self-love</li>
+                    <li>🦋 May you continue to transform and grow beautifully</li>
+                    <li>🌙 May peaceful nights and restful sleep be yours</li>
+                    <li>☀️ May each sunrise bring new hope and possibilities</li>
+                    <li>🎵 May music and joy fill your days</li>
+                    <li>🏖️ May you find time to relax and enjoy life's pleasures</li>
+                    <li>🍀 May luck and good fortune follow you everywhere</li>
+                    <li>🔥 May your passion for life burn bright all year long</li>
+                    <li>💐 May you receive love and kindness from everyone around you</li>
+                    <li>👑 May you feel like the queen you truly are</li>
+                    <li>🎁 May unexpected surprises and blessings come your way</li>
+                    <li>🌟 May your dreams not just become reality, but exceed your expectations</li>
+                    <li>💕 Most of all, may you know that I love you more with each passing day</li>
+                </ul>
+                <p style="margin-top: 30px; font-weight: 600; color: #764ba2; font-size: 1.2rem;">
+                    Happy New Year, my love! 🎉💕<br>
+                    Here's to us and everything we'll achieve together in 2025! 🥂✨
+                </p>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>🎁 Created with all my love and heart 💕</p>
+            <p>Made especially for Aya, the girl who changed my life 🌹</p>
+        </div>
+    </div>
+
+    <script>
+        // Tab Navigation
+        const navButtons = document.querySelectorAll('.nav-btn');
+        const sections = document.querySelectorAll('.section');
+
+        navButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const tabName = btn.dataset.tab;
+                
+                // Remove active class from all buttons and sections
+                navButtons.forEach(b => b.classList.remove('active'));
+                sections.forEach(s => s.classList.remove('active'));
+                
+                // Add active class to clicked button and corresponding section
+                btn.classList.add('active');
+                document.getElementById(tabName).classList.add('active');
+                
+                // Scroll to top
+                window.scrollTo(0, 0);
+            });
+        });
+
+        // Gift Box Animation
+        const giftBox = document.getElementById('giftBox');
+        const clickHint = document.getElementById('clickHint');
+        let isOpened = false;
+
+        giftBox.addEventListener('click', function() {
+            if (!isOpened) {
+                isOpened = true;
+                giftBox.classList.add('opened');
+                clickHint.style.display = 'none';
+                createConfetti();
+            }
+        });
+
+        // Confetti Animation
+        function createConfetti() {
+            const colors = ['#FF69B4', '#FFB6C1', '#FFC0CB', '#FFD700', '#FF1493', '#667eea', '#764ba2'];
+            const confettiCount = 60;
+
+            for (let i = 0; i < confettiCount; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * 100 + '%';
+                    confetti.style.top = '-10px';
+                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.width = Math.random() * 10 + 5 + 'px';
+                    confetti.style.height = confetti.style.width;
+                    confetti.style.borderRadius = '50%';
+                    confetti.style.animation = `fall ${Math.random() * 2 + 2}s linear forwards`;
+
+                    document.body.appendChild(confetti);
+
+                    setTimeout(() => confetti.remove(), 3000);
+                }, i * 30);
+            }
+        }
+
+        // Add fall animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fall {
+                to {
+                    transform: translateY(100vh) rotate(360deg);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Countdown Timer
+        function updateCountdown() {
+            const anniversary = new Date('2025-07-07T00:00:00').getTime();
+            const now = new Date().getTime();
+            const distance = anniversary - now;
+
+            if (distance < 0) {
+                document.getElementById('days').textContent = '0';
+                document.getElementById('hours').textContent = '0';
+                document.getElementById('minutes').textContent = '0';
+                document.getElementById('seconds').textContent = '0';
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('days').textContent = days;
+            document.getElementById('hours').textContent = hours;
+            document.getElementById('minutes').textContent = minutes;
+            document.getElementById('seconds').textContent = seconds;
+        }
+
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+    </script>
+</body>
+</html>
