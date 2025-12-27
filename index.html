@@ -412,13 +412,13 @@
 
         .memories-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
         }
 
         .memory-card {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 15px;
+            border-radius: 12px;
             overflow: hidden;
             aspect-ratio: 1;
             cursor: pointer;
@@ -426,8 +426,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            min-height: 250px;
-            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.3);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.3);
             position: relative;
         }
 
@@ -512,6 +511,140 @@
             font-size: 0.95rem;
             opacity: 0.9;
             line-height: 1.5;
+        }
+
+        /* Interactive Reason Cards */
+        .clickable-reason {
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .clickable-reason:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+            background: linear-gradient(135deg, #ffe6f0 0%, #fff0f5 100%);
+        }
+
+        .reason-card::after {
+            content: '👆 Click';
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            font-size: 0.7rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            background: #ff1493;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-weight: bold;
+        }
+
+        .clickable-reason:hover::after {
+            opacity: 1;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal.active {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, #fff5f7 0%, #ffffff 100%);
+            padding: 40px;
+            border-radius: 20px;
+            max-width: 600px;
+            width: 90%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            position: relative;
+            animation: slideUp 0.4s ease;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #ff69b4;
+            padding-bottom: 15px;
+        }
+
+        .modal-header h2 {
+            color: #ff1493;
+            font-size: 1.8rem;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 28px;
+            cursor: pointer;
+            color: #999;
+            transition: color 0.3s ease;
+            padding: 0;
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .close-btn:hover {
+            color: #ff1493;
+        }
+
+        .modal-message {
+            font-size: 1.1rem;
+            color: #333;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .modal-footer {
+            text-align: right;
+            color: #ff69b4;
+            font-weight: bold;
+            font-size: 0.95rem;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
         }
 
         /* Message Section */
@@ -680,7 +813,6 @@
             <button class="nav-btn active" data-tab="message">💌 Letter</button>
             <button class="nav-btn" data-tab="memories">📸 Memories</button>
             <button class="nav-btn" data-tab="reasons">❤️ Why I Love You</button>
-            <button class="nav-btn" data-tab="timeline">📅 Our Timeline</button>
             <button class="nav-btn" data-tab="wishes">🌟 2025 Wishes</button>
         </div>
 
@@ -863,9 +995,9 @@
                         <div class="reason-description">Even when you think no one's listening, it's beautiful.</div>
                     </div>
                     <div class="reason-card">
-                        <div class="reason-emoji">🤗</div>
-                        <div class="reason-title">Your Hugs</div>
-                        <div class="reason-description">They make everything feel better and safer immediately.</div>
+                        <div class="reason-emoji">💬</div>
+                        <div class="reason-title">Your Messages</div>
+                        <div class="reason-description">Every text from you brightens my day, no matter the time zone.</div>
                     </div>
                     <div class="reason-card">
                         <div class="reason-emoji">🌟</div>
@@ -933,24 +1065,24 @@
                         <div class="reason-description">Starting each day together is a blessing.</div>
                     </div>
                     <div class="reason-card">
-                        <div class="reason-emoji">🍽️</div>
-                        <div class="reason-title">Meal Times Together</div>
-                        <div class="reason-description">Even simple meals become special with you.</div>
+                        <div class="reason-emoji">🌙</div>
+                        <div class="reason-title">Late Night Calls</div>
+                        <div class="reason-description">Those long calls when the world is asleep—just you and me talking.</div>
                     </div>
                     <div class="reason-card">
-                        <div class="reason-emoji">🚗</div>
-                        <div class="reason-title">Car Rides With You</div>
-                        <div class="reason-description">Music, laughter, and you—perfect combination.</div>
+                        <div class="reason-emoji">🎮</div>
+                        <div class="reason-title">Gaming Together</div>
+                        <div class="reason-description">Co-op games, competitive matches, or just chilling while playing—I love it all with you.</div>
                     </div>
                     <div class="reason-card">
-                        <div class="reason-emoji">🏠</div>
-                        <div class="reason-title">Home With You</div>
-                        <div class="reason-description">Anywhere is home when you're there.</div>
+                        <div class="reason-emoji">📱</div>
+                        <div class="reason-title">Our Video Calls</div>
+                        <div class="reason-description">Seeing your face on screen makes every distance disappear in that moment.</div>
                     </div>
                     <div class="reason-card">
                         <div class="reason-emoji">🎬</div>
-                        <div class="reason-title">Movie Nights</div>
-                        <div class="reason-description">Cuddled up next to you is all I need.</div>
+                        <div class="reason-title">Watching Shows Together</div>
+                        <div class="reason-description">Even apart, we sync up and watch together—it's our special time.</div>
                     </div>
                     <div class="reason-card">
                         <div class="reason-emoji">🍪</div>
@@ -1047,60 +1179,6 @@
         </div>
 
         <!-- Timeline Section -->
-        <div id="timeline" class="section">
-            <div class="timeline">
-                <h3>📅 Our Love Story Together</h3>
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-date">HelloTalk Message</div>
-                        <div class="timeline-title">You Took a Chance on Me</div>
-                        <div class="timeline-description">You were brave enough to message a stranger. That one message changed my life forever. I didn't know it then, but you were about to become my everything.</div>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-date">First Few Conversations</div>
-                        <div class="timeline-title">Keeping My Distance (But Falling)</div>
-                        <div class="timeline-description">I tried to be responsible and treat you like a sister. I wanted to protect you because of our age difference. But somewhere in those conversations, I couldn't help but notice how special you are.</div>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-date">5 Months of Connection</div>
-                        <div class="timeline-title">Feelings I Couldn't Deny</div>
-                        <div class="timeline-description">Around 5 months in, I realized I was in love with you. It wasn't just friendship anymore. Your kindness, your laugh, your heart—I fell completely for you. Fighting those feelings became impossible.</div>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-date">July 7, 2025</div>
-                        <div class="timeline-title">We Became Official 💕</div>
-                        <div class="timeline-description">The day we stopped hiding our feelings and admitted we were in love. July 7 became the most important day of my life. Every year, I'll celebrate the day you officially became mine.</div>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-date">Present Day</div>
-                        <div class="timeline-title">Long Distance, But Never Apart</div>
-                        <div class="timeline-description">We're miles apart, but our late-night calls, gaming sessions, and movie nights keep us connected. Every moment with you means everything. This LDR has only made me love you more.</div>
-                    </div>
-                </div>
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <div class="timeline-date">The Future</div>
-                        <div class="timeline-title">Closing The Distance</div>
-                        <div class="timeline-description">I can't wait for the day we're finally together in person. Until then, I'll love you through every call, every message, every moment. You're worth the wait, Aya.</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <!-- 2025 Wishes Section -->
         <div id="wishes" class="section">
             <div class="message-section">
@@ -1224,33 +1302,119 @@
         `;
         document.head.appendChild(style);
 
-        // Countdown Timer
-        function updateCountdown() {
-            const anniversary = new Date('2025-07-07T00:00:00').getTime();
-            const now = new Date().getTime();
-            const distance = anniversary - now;
+        // Countdown Timer - Ensure DOM is ready before updating
+        function initCountdown() {
+            const updateCountdown = () => {
+                const anniversary = new Date('2026-07-07T00:00:00').getTime();
+                const now = new Date().getTime();
+                const distance = anniversary - now;
 
-            if (distance < 0) {
-                document.getElementById('days').textContent = '0';
-                document.getElementById('hours').textContent = '0';
-                document.getElementById('minutes').textContent = '0';
-                document.getElementById('seconds').textContent = '0';
-                return;
-            }
+                const daysEl = document.getElementById('days');
+                const hoursEl = document.getElementById('hours');
+                const minutesEl = document.getElementById('minutes');
+                const secondsEl = document.getElementById('seconds');
 
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                if (!daysEl || !hoursEl || !minutesEl || !secondsEl) {
+                    console.warn('Countdown elements not found');
+                    return;
+                }
 
-            document.getElementById('days').textContent = days;
-            document.getElementById('hours').textContent = hours;
-            document.getElementById('minutes').textContent = minutes;
-            document.getElementById('seconds').textContent = seconds;
+                if (distance < 0) {
+                    daysEl.textContent = '0';
+                    hoursEl.textContent = '0';
+                    minutesEl.textContent = '0';
+                    secondsEl.textContent = '0';
+                    return;
+                }
+
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                daysEl.textContent = days;
+                hoursEl.textContent = hours;
+                minutesEl.textContent = minutes;
+                secondsEl.textContent = seconds;
+            };
+
+            // Update immediately
+            updateCountdown();
+            // Update every second
+            setInterval(updateCountdown, 1000);
         }
 
-        updateCountdown();
-        setInterval(updateCountdown, 1000);
+        // ===== INTERACTIVE REASONS =====
+        const reasonMessages = {
+            'Your Smile': 'Every time you smile, my heart skips a beat. That genuine, beautiful smile of yours lights up my entire world. It\'s the kind of smile that makes all my worries disappear instantly. I could fall in love with you all over again just from that smile.',
+            'Your Laugh': 'That laugh is the most contagious, beautiful sound I\'ve ever heard. When you laugh genuinely, nothing else matters. I could listen to it forever and never get tired. You make me laugh too, and those are my favorite moments with you.',
+            'Your Kindness': 'You have the biggest heart I\'ve ever known. The way you care about people, even strangers, shows what an incredible soul you are. Your kindness makes the world a better place, and it makes me want to be a better person too.',
+            'Your Intelligence': 'Your mind is brilliant and it amazes me every single day. The way you think, analyze, and understand things challenges me to be smarter. Your conversations inspire me and I learn so much from you, Aya.',
+            'Your Beauty': 'You\'re absolutely stunning inside and out. But what truly makes you beautiful is your heart, your kindness, and your genuine spirit. When I look at you, I see perfection in every way.',
+            'Your Strength': 'You\'re so much stronger than you give yourself credit for. I admire your resilience, your courage, and the way you face challenges head-on. You inspire me to be brave every single day.',
+            'Your Creativity': 'The way you express yourself is truly unique and beautiful. Your creativity shows in everything you do—from your thoughts to your actions. It\'s one of the things I love most about you.',
+            'You Listen': 'Thank you for actually hearing me. You don\'t just listen—you understand me and you care deeply about what I say. That means the world to me.',
+            'You Make Me Better': 'Being with you, even from a distance, brings out the best version of myself. You inspire me to be kinder, stronger, and more loving. You make me want to be a better person.',
+            'Your Heart': 'Your heart is pure gold. The love, compassion, and genuine care you have for people around you is rare and beautiful. I feel blessed to be loved by someone as wonderful as you.',
+            'Your Gentle Nature': 'There\'s a softness and grace in everything you do. The way you treat people with kindness and gentleness shows your beautiful nature.',
+            'The Way You Sing': 'Even when you think no one\'s listening, your voice is beautiful. There\'s something so pure and genuine about you singing. I love it.',
+            'Your Messages': 'Every single text from you makes my day infinitely better. Whether it\'s silly jokes, deep thoughts, or just saying hi, your messages are what keep me going through the days. I treasure every word.',
+            'Your Ambitions': 'You dream big and that\'s one of the things I admire most about you. Your goals inspire me, and I\'m so incredibly proud of the person you\'re becoming. I\'ll always believe in you.',
+            'Your Eyes': 'Your eyes tell a thousand stories and I could get lost in them for hours. They\'re so expressive, so beautiful, and they\'re my favorite view in this entire world.',
+            'Your Presence': 'Even though we\'re far apart, your presence fills my heart. I feel you with me always. The distance doesn\'t matter because you\'re my home, Aya.',
+            'You Remember Details': 'You remember the little things about my life and my likes. The fact that you care enough to remember these small details means everything to me.',
+            'Your Dedication': 'The way you dedicate yourself to the things and people you love is incredible. I\'ve never felt more valued by anyone in my entire life.',
+            'Your Authenticity': 'You\'re always yourself with me, and I love the real you so much. No pretenses, no masks—just genuine, beautiful, authentic you.',
+            'Your Voice': 'Your voice on the phone is the best medicine. When I hear you, all my stress melts away. I could talk to you for hours and never get tired of hearing your voice.',
+            'Late Night Calls': 'Those long calls when the world is asleep—just you and me talking about everything and nothing. They\'re the highlight of my days and I cherish every single moment.',
+            'Gaming Together': 'Playing games with you is so much fun. Whether we\'re winning or losing, laughing or frustrated, every moment is special because it\'s with you. You make gaming 10x more enjoyable.',
+            'Watching Shows Together': 'Syncing up to watch shows together keeps us connected despite the distance. It\'s our special bonding time, and those evenings are some of my favorite memories with you.',
+            'Our Video Calls': 'Seeing your face on screen makes every distance disappear. Those moments when we\'re just looking at each other, even in silence, are precious beyond words. I love you so much.',
+            'Your Support': 'You\'re always there for me, listening and supporting me. You never make me feel bad for my struggles—you just love me and stand by my side. That\'s everything.',
+            'Your Loyalty': 'You\'re loyal to the people you love, and I\'m honored to be one of them. I know I can count on you, always.',
+            'Your Passion': 'You\'re passionate about the things you care about, and that passion is contagious. It\'s one of the most attractive things about you.',
+            'Your Humor': 'You make me laugh even on my darkest days. Your sense of humor is perfect and matches mine so well. Those moments of laughter with you are priceless.',
+            'Your Caring Nature': 'The way you ask about my day, remember details about my life, and genuinely care about my well-being—it means everything to me, Aya.',
+            'Your Growth': 'I love watching you grow and evolve every day. You\'re becoming an even more amazing person, and I\'m so proud to be by your side.',
+            'Your Courage': 'It took courage to message me first on HelloTalk. It took courage to develop feelings. It took courage to say yes to us. You\'re so brave, and I admire that about you.',
+            'Your Sweetness': 'You have this sweetness about you that melts my heart completely. The way you care, the way you speak, it\'s all so beautifully sweet.',
+            'Your Dreams': 'I love listening to you talk about what you want in life. Your dreams matter to me as much as they matter to you. I\'m here to support every single one of them.',
+            'Your Honesty': 'You always tell me the truth, even when it\'s hard. That honesty and integrity is rare, and I respect and love you for it.',
+            'Your Effort': 'Despite the distance and all the challenges, you never stop trying. You make time for me, you care deeply, and you show up. That effort means the world to me, Aya.',
+            'Your Adaptability': 'You\'re so flexible and understanding about our situation. You make the long distance work beautifully with me.',
+            'The Way You Love': 'The way you love is so genuine and pure. You love with your whole heart, and I feel so lucky to be loved by you.',
+            'Your Confidence': 'When you believe in yourself, you shine. Your confidence is attractive and inspiring.',
+            'Your Wisdom': 'You\'re wise beyond your years. Your perspective and advice help me through difficult times.',
+            'Your Playfulness': 'You know how to have fun and be silly. Those playful moments with you are some of my favorites.',
+            'Your Sensitivity': 'You\'re sensitive to others\' feelings and emotions. That empathy is beautiful and rare.',
+            'Your Optimism': 'You believe in better days ahead, and that optimism is contagious. You inspire me to stay hopeful.',
+            'Your Patience': 'You\'re patient with me and with life. That patience shows your maturity and wisdom.',
+            'Your Thoughtfulness': 'You think of me and do thoughtful things that show how much you care. Those gestures mean more than you know.',
+            'Your Resilience': 'No matter what life throws at you, you bounce back stronger. That resilience is admirable.',
+            'Your Generosity': 'Your generous heart and spirit inspire everyone around you. You give so much of yourself.',
+            'Your Peace': 'When I\'m with you, even through a screen, I feel at peace. You calm my anxious mind.',
+            'Simply You': 'At the end of the day, I love you for just being you. Not for what you do or don\'t do—just for existing and being exactly who you are. You\'re my person, Aya, and I love you endlessly.'\n        };\n\n        // Initialize clickable reasons\n        function initializeReasons() {\n            const reasonCards = document.querySelectorAll('.reason-card');\n            reasonCards.forEach((card, index) => {\n                card.classList.add('clickable-reason');\n                card.style.cursor = 'pointer';\n                card.onclick = function(e) {\n                    e.stopPropagation();\n                    openReasonModal(this);\n                };\n            });\n        }\n\n        // Open reason modal\n        function openReasonModal(element) {\n            const title = element.querySelector('.reason-title').textContent;\n            const emoji = element.querySelector('.reason-emoji').textContent;\n            const message = reasonMessages[title] || 'You are absolutely incredible and I love you for so many reasons. ❤️';\n            \n            document.getElementById('modalTitle').textContent = emoji + ' ' + title;\n            document.getElementById('modalMessage').textContent = message;\n            document.getElementById('reasonModal').classList.add('active');\n        }\n\n        // Close reason modal\n        function closeReasonModal() {\n            document.getElementById('reasonModal').classList.remove('active');\n        }\n\n        // Close modal when clicking outside\n        window.onclick = function(event) {\n            const modal = document.getElementById('reasonModal');\n            if (event.target == modal) {\n                modal.classList.remove('active');\n            }\n        };\n\n        // Initialize on DOM ready\n        if (document.readyState === 'loading') {\n            document.addEventListener('DOMContentLoaded', initializeReasons);\n        } else {\n            initializeReasons();\n        }
+
+        // Wait for DOM to be fully loaded
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initCountdown);
+        } else {
+            initCountdown();
+        }
     </script>
+
+    <!-- Reason Modal -->
+    <div id="reasonModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">💕 Reason</h2>
+                <button class="close-btn" onclick="closeReasonModal()">&times;</button>
+            </div>
+            <p class="modal-message" id="modalMessage"></p>
+            <div class="modal-footer">
+                Forever yours ❤️
+            </div>
+        </div>
+    </div>
 </body>
 </html>
