@@ -1393,7 +1393,52 @@
             'Your Resilience': 'No matter what life throws at you, you bounce back stronger. That resilience is admirable.',
             'Your Generosity': 'Your generous heart and spirit inspire everyone around you. You give so much of yourself.',
             'Your Peace': 'When I\'m with you, even through a screen, I feel at peace. You calm my anxious mind.',
-            'Simply You': 'At the end of the day, I love you for just being you. Not for what you do or don\'t do—just for existing and being exactly who you are. You\'re my person, Aya, and I love you endlessly.'\n        };\n\n        // Initialize clickable reasons\n        function initializeReasons() {\n            const reasonCards = document.querySelectorAll('.reason-card');\n            reasonCards.forEach((card, index) => {\n                card.classList.add('clickable-reason');\n                card.style.cursor = 'pointer';\n                card.onclick = function(e) {\n                    e.stopPropagation();\n                    openReasonModal(this);\n                };\n            });\n        }\n\n        // Open reason modal\n        function openReasonModal(element) {\n            const title = element.querySelector('.reason-title').textContent;\n            const emoji = element.querySelector('.reason-emoji').textContent;\n            const message = reasonMessages[title] || 'You are absolutely incredible and I love you for so many reasons. ❤️';\n            \n            document.getElementById('modalTitle').textContent = emoji + ' ' + title;\n            document.getElementById('modalMessage').textContent = message;\n            document.getElementById('reasonModal').classList.add('active');\n        }\n\n        // Close reason modal\n        function closeReasonModal() {\n            document.getElementById('reasonModal').classList.remove('active');\n        }\n\n        // Close modal when clicking outside\n        window.onclick = function(event) {\n            const modal = document.getElementById('reasonModal');\n            if (event.target == modal) {\n                modal.classList.remove('active');\n            }\n        };\n\n        // Initialize on DOM ready\n        if (document.readyState === 'loading') {\n            document.addEventListener('DOMContentLoaded', initializeReasons);\n        } else {\n            initializeReasons();\n        }
+            'Simply You': 'At the end of the day, I love you for just being you. Not for what you do or don\'t do—just for existing and being exactly who you are. You\'re my person, Aya, and I love you endlessly.'
+        };
+
+        // Initialize clickable reasons
+        function initializeReasons() {
+            const reasonCards = document.querySelectorAll('.reason-card');
+            reasonCards.forEach((card, index) => {
+                card.classList.add('clickable-reason');
+                card.style.cursor = 'pointer';
+                card.onclick = function(e) {
+                    e.stopPropagation();
+                    openReasonModal(this);
+                };
+            });
+        }
+
+        // Open reason modal
+        function openReasonModal(element) {
+            const title = element.querySelector('.reason-title').textContent;
+            const emoji = element.querySelector('.reason-emoji').textContent;
+            const message = reasonMessages[title] || 'You are absolutely incredible and I love you for so many reasons. ❤️';
+            
+            document.getElementById('modalTitle').textContent = emoji + ' ' + title;
+            document.getElementById('modalMessage').textContent = message;
+            document.getElementById('reasonModal').classList.add('active');
+        }
+
+        // Close reason modal
+        function closeReasonModal() {
+            document.getElementById('reasonModal').classList.remove('active');
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('reasonModal');
+            if (event.target == modal) {
+                modal.classList.remove('active');
+            }
+        };
+
+        // Initialize on DOM ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initializeReasons);
+        } else {
+            initializeReasons();
+        }
 
         // Wait for DOM to be fully loaded
         if (document.readyState === 'loading') {
