@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -46,8 +47,15 @@
         }
 
         @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-15px) rotate(5deg); }
+
+            0%,
+            100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-15px) rotate(5deg);
+            }
         }
 
         .header p {
@@ -255,8 +263,15 @@
         }
 
         @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.5; }
+
+            0%,
+            100% {
+                opacity: 1;
+            }
+
+            50% {
+                opacity: 0.5;
+            }
         }
 
         /* Letter Styles */
@@ -667,6 +682,7 @@
                 transform: translateY(50px);
                 opacity: 0;
             }
+
             to {
                 transform: translateY(0);
                 opacity: 1;
@@ -677,6 +693,7 @@
             from {
                 opacity: 0;
             }
+
             to {
                 opacity: 1;
             }
@@ -757,8 +774,15 @@
         }
 
         @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
         }
 
         /* Footer */
@@ -809,16 +833,195 @@
                 font-size: 0.9rem;
             }
         }
+
+        /* Unlock Screen */
+        .unlock-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #ec4899 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+            flex-direction: column;
+        }
+
+        .unlock-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .unlock-container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 60px 40px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            max-width: 500px;
+            animation: slideIn 0.6s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .gift-emoji {
+            font-size: 5rem;
+            margin-bottom: 20px;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .unlock-screen h1 {
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .unlock-screen p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .password-input-group {
+            margin: 30px 0;
+        }
+
+        .password-input {
+            width: 100%;
+            padding: 15px;
+            font-size: 1.1rem;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            text-align: center;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .password-input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .password-input:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 255, 255, 0.6);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+        }
+
+        .unlock-btn {
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            background: linear-gradient(135deg, #ec4899 0%, #f43f5e 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 5px 15px rgba(244, 63, 94, 0.3);
+        }
+
+        .unlock-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(244, 63, 94, 0.5);
+        }
+
+        .unlock-btn:active {
+            transform: translateY(-1px);
+        }
+
+        .error-message {
+            color: #ffcdd2;
+            font-size: 0.95rem;
+            margin-top: 15px;
+            min-height: 20px;
+            animation: shake 0.5s ease;
+        }
+
+        @keyframes shake {
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            25% {
+                transform: translateX(-10px);
+            }
+
+            75% {
+                transform: translateX(10px);
+            }
+        }
+
+        .hint-text {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+            margin-top: 20px;
+            font-style: italic;
+        }
     </style>
 </head>
+
 <body>
+    <!-- Unlock Screen -->
+    <div class="unlock-screen" id="unlockScreen">
+        <div class="unlock-container">
+            <div class="gift-emoji">🎁</div>
+            <h1>A Special Gift Awaits</h1>
+            <p>This gift was created with love just for you. Enter our anniversary date to unlock it!</p>
+
+            <div class="password-input-group">
+                <input type="password" id="passwordInput" class="password-input" placeholder="MM/DD/YYYY"
+                    maxlength="10">
+                <div class="error-message" id="errorMessage"></div>
+            </div>
+
+            <button class="unlock-btn" onclick="unlockGift()">Unlock Gift</button>
+
+            <p class="hint-text">💡 Hint: No hint for youu 🤪🤪🤪 </p>
+        </div>
+    </div>
+
     <div class="container">
         <!-- Header -->
         <div class="header">
             <div class="flowers">🌹 💐 🌸</div>
-            <h1>A Special Gift For You, Aya 💝</h1>
+            <h1>A Special Gift For You, My Love 💝</h1>
             <p>Happy New Year 2026! Let's count down to our special anniversary together... 💕</p>
-       </div>
+        </div>
 
         <!-- Countdown Timer -->
         <div class="countdown">
@@ -846,7 +1049,7 @@
         <!-- Navigation -->
         <div class="nav-tabs">
             <button class="nav-btn active" data-tab="message">💌 Letter</button>
-            <button class="nav-btn" data-tab="memories">📸 Your Beautiful Photos!</button>
+            <button class="nav-btn" data-tab="memories">📸 Youuu!!!!</button>
             <button class="nav-btn" data-tab="reasons">❤️ Why I Love You</button>
             <button class="nav-btn" data-tab="wishes">🌟 2026 Wishes</button>
         </div>
@@ -864,10 +1067,13 @@
                     <div class="letter">
                         <h2>Welcome! 🎉</h2>
                         <p>
-                            You've opened a special gift created just for you! This website contains my feelings, memories, and dreams for us. Take your time to explore everything. Each section has something meaningful prepared with love.
+                            You've opened a special gift created just for you! This website contains my feelings,
+                            memories, and dreams for us. Take your time to explore everything. Each section has
+                            something meaningful prepared with love.
                         </p>
                         <p>
-                            I wanted to make something unique and personal because you deserve to feel how special you are to me. Now click on the different sections to see more!
+                            I wanted to make something unique and personal because you deserve to feel how special you
+                            are to me. Now click on the different sections to see more!
                         </p>
                         <div class="letter-signature">
                             With all my love 💕
@@ -881,24 +1087,40 @@
         <!-- Letter Section -->
         <div id="message" class="section active">
             <div class="letter">
-                <h2>To my dear lovely Aya 💕</h2>
+                <h2>To my dear lovely Baby 💕</h2>
                 <p>
-                    I still remember that moment you sent me that first message. You took a chance approaching someone older than you, and I was hesitant at first. I wanted to protect you, so I kept my distance and treated you like a sister. But life had other plans...
+                    I still remember that moment you sent me that first message. You took a chance approaching someone
+                    older than you, and I was hesitant at first. I wanted to protect you, so I kept my distance and
+                    treated you like a sister. But life had other plans...
                 </p>
                 <p>
-                    I didn't plan to develop feelings for you, but it happened so naturally. Your kindness, your laugh, your comfortableness with me—I fell for all of it. And now, here we are, entering this new year together as something more than friends. I'm so grateful for this journey, and I can't wait to see where it takes us.
+                    I didn't plan to develop feelings for you, but it happened so naturally. Your kindness, your laugh,
+                    your comfortableness with me—I fell for all of it. And now, here we are, entering this new year
+                    together as something more than friends. I'm so grateful for this journey, and I can't wait to see
+                    where it takes us.
                 </p>
                 <p>
-                    Even though we're miles apart, our late-night calls, and gaming sessions (roblox wahahaha), have become the highlight of my days. You've made the distance feel smaller with every moment we share. Your smile through the screen brightens my darkest days, and your laugh is the best sound I could ever hear.
+                    Even though we're miles apart, our late-night calls, and gaming sessions (roblox wahahaha), have
+                    become the highlight of my days. You've made the distance feel smaller with every moment we share.
+                    Your smile through the screen brightens my darkest days, and your laugh is the best sound I could
+                    ever hear.
                 </p>
                 <p>
-                    This past year has been amazing because you came into my life. You've turned ordinary moments into something extraordinary. From midnight conversations to those silly gaming moments, I treasure every second we spend together.
+                    This past year has been amazing because you came into my life. You've turned ordinary moments into
+                    something extraordinary. From midnight conversations to those silly gaming moments, I treasure every
+                    second we spend together.
                 </p>
                 <p>
-                    As we step into 2026, I want you to know that I'm so excited for our future together. I want to close this distance one day, build real memories with you, make you smile even more, and show you every single day how much you mean to me. I want to be the one who makes you laugh, the one who makes you feel loved, and the one who makes you feel like you're the most beautiful person in the world.
+                    As we step into 2026, I want you to know that I'm so excited for our future together. I want to
+                    close this distance one day, build real memories with you, make you smile even more, and show you
+                    every single day how much you mean to me. I want to be the one who makes you laugh, the one who
+                    makes you feel loved, and the one who makes you feel like you're the most beautiful person in the
+                    world.
                 </p>
                 <p>
-                    Thank you for being brave enough to message me first. Thank you for being patient with me. Thank you for being mine. You are my favorite person, my adventure, and my heart. I love you more each day, and I can't wait to see what the future holds for us. Happy New Year, my love!💖
+                    Thank you for being brave enough to message me first. Thank you for being patient with me. Thank you
+                    for being mine. You are my favorite person, my adventure, and my heart. I love you more each day,
+                    and I can't wait to see what the future holds for us. Happy New Year, my love!💖
                 </p>
                 <div class="letter-signature">
                     Forever yours,<br>
@@ -912,7 +1134,8 @@
             <div class="memories-section">
                 <h3>📸 My Beautiful Babyy!!! 📸</h3>
                 <p style="text-align: center; color: #666; margin-bottom: 30px; font-size: 1.05rem;">
-                    Your beautiful photos and videos - each one is a precious memory of you that I cherish forever. They remind me every day why I love you so much.
+                    Your beautiful photos and videos - each one is a precious memory of you that I cherish forever. They
+                    remind me every day why I love you so much.
                 </p>
                 <div class="memories-grid" id="memoriesGrid">
                     <!-- Memories will be loaded dynamically -->
@@ -923,12 +1146,13 @@
         <!-- Reasons I Love You -->
         <div id="reasons" class="section">
             <div class="reasons-section">
-                <h3>💖 50 Reasons I Love You, Aya (And Then Some...)</h3>
+                <h3>💖 50 Reasons I Love You, Honey </h3>
                 <div class="reasons-grid">
                     <div class="reason-card">
                         <div class="reason-emoji">😊</div>
                         <div class="reason-title">Your Smile</div>
-                        <div class="reason-description">It lights up the room and makes my heart skip a beat every time.</div>
+                        <div class="reason-description">It lights up the room and makes my heart skip a beat every time.
+                        </div>
                     </div>
                     <div class="reason-card">
                         <div class="reason-emoji">😂</div>
@@ -963,7 +1187,8 @@
                     <div class="reason-card">
                         <div class="reason-emoji">👂</div>
                         <div class="reason-title">You Listen</div>
-                        <div class="reason-description">You actually hear me, understand me, and care about what I say.</div>
+                        <div class="reason-description">You actually hear me, understand me, and care about what I say.
+                        </div>
                     </div>
                     <div class="reason-card">
                         <div class="reason-emoji">🌈</div>
@@ -988,7 +1213,8 @@
                     <div class="reason-card">
                         <div class="reason-emoji">💬</div>
                         <div class="reason-title">Your Messages</div>
-                        <div class="reason-description">Every text from you brightens my day, no matter the time zone.</div>
+                        <div class="reason-description">Every text from you brightens my day, no matter the time zone.
+                        </div>
                     </div>
                     <div class="reason-card">
                         <div class="reason-emoji">🌟</div>
@@ -1058,22 +1284,26 @@
                     <div class="reason-card">
                         <div class="reason-emoji">🌙</div>
                         <div class="reason-title">Late Night Calls</div>
-                        <div class="reason-description">Those long calls when the world is asleep—just you and me talking.</div>
+                        <div class="reason-description">Those long calls when the world is asleep—just you and me
+                            talking.</div>
                     </div>
                     <div class="reason-card">
                         <div class="reason-emoji">🎮</div>
                         <div class="reason-title">Gaming Together</div>
-                        <div class="reason-description">Co-op games, competitive matches, or just chilling while playing—I love it all with you.</div>
+                        <div class="reason-description">Co-op games, competitive matches, or just chilling while
+                            playing—I love it all with you.</div>
                     </div>
                     <div class="reason-card">
                         <div class="reason-emoji">📱</div>
                         <div class="reason-title">Our Video Calls</div>
-                        <div class="reason-description">Seeing your face on screen makes every distance disappear in that moment.</div>
+                        <div class="reason-description">Seeing your face on screen makes every distance disappear in
+                            that moment.</div>
                     </div>
                     <div class="reason-card">
                         <div class="reason-emoji">🎬</div>
                         <div class="reason-title">Watching Shows Together</div>
-                        <div class="reason-description">Even apart, we sync up and watch together—it's our special time.</div>
+                        <div class="reason-description">Even apart, we sync up and watch together—it's our special time.
+                        </div>
                     </div>
                     <div class="reason-card">
                         <div class="reason-emoji">🍪</div>
@@ -1220,15 +1450,19 @@
                     <li>🌹 May you never doubt for a second how much you mean to me and how real this love is</li>
                     <li>🎪 May we continue to laugh together, cry together, and grow together as one</li>
                     <li>⏰ May time fly by until the day we can finally hold each other in our arms</li>
-                    <li>🌟 May our love story continue to be one of the most beautiful and inspiring love stories ever told</li>
-                    <li>💕 May every text, every call, every game, every show watched together remind us why we're so in love</li>
+                    <li>🌟 May our love story continue to be one of the most beautiful and inspiring love stories ever
+                        told</li>
+                    <li>💕 May every text, every call, every game, every show watched together remind us why we're so in
+                        love</li>
                     <li>🎊 May we celebrate every milestone together, no matter how small or big</li>
                     <li>🌠 May your dreams not just become reality, but may we build our dreams together</li>
-                    <li>🏠 May 2026 bring us closer to having a home together, whether it's here, there, or anywhere in the world</li>
+                    <li>🏠 May 2026 bring us closer to having a home together, whether it's here, there, or anywhere in
+                        the world</li>
                     <li>💯 May I never take you for granted and may you always feel how much I treasure you</li>
                     <li>🎆 May this year mark the beginning of our greatest adventures together</li>
                     <li>✨ May we end 2026 even more in love than we are right now</li>
-                    <li>💕 Most of all, may you know that I love you more with each passing day, and I can't wait to close this distance and build our beautiful future together, forever</li>
+                    <li>💕 Most of all, may you know that I love you more with each passing day, and I can't wait to
+                        close this distance and build our beautiful future together, forever</li>
                 </ul>
                 <p style="margin-top: 30px; font-weight: 600; color: #764ba2; font-size: 1.2rem;">
                     Happy New Year, my love! 🎉💕<br>
@@ -1240,11 +1474,53 @@
         <!-- Footer -->
         <div class="footer">
             <p>🎁 Created with all my love and heart 💕</p>
-            <p>Made especially for Aya, the girl who changed my life 🌹</p>
+            <p>Made especially for you, my dear, the one who changed my life 🌹</p>
         </div>
     </div>
 
     <script>
+        // Unlock Gift Function
+        function unlockGift() {
+            const passwordInput = document.getElementById('passwordInput');
+            const errorMessage = document.getElementById('errorMessage');
+            let enteredPassword = passwordInput.value.trim();
+
+            // Remove slashes if user typed them
+            enteredPassword = enteredPassword.replace(/\//g, '');
+
+            // Your anniversary date - change this to your actual date (without slashes)
+            const correctPassword = '07072025'; // July 7, 2025
+
+            if (enteredPassword === correctPassword) {
+                errorMessage.textContent = '';
+                const unlockScreen = document.getElementById('unlockScreen');
+                unlockScreen.classList.add('hidden');
+
+                // Optional: Play a celebration animation
+                setTimeout(() => {
+                    // Scroll to top to see the header
+                    window.scrollTo(0, 0);
+                }, 400);
+            } else {
+                errorMessage.textContent = '❌ Incorrect date. Try again! 💕';
+                passwordInput.value = '';
+                passwordInput.focus();
+            }
+        }
+
+        // Allow pressing Enter to unlock
+        document.addEventListener('DOMContentLoaded', function () {
+            const passwordInput = document.getElementById('passwordInput');
+            if (passwordInput) {
+                passwordInput.addEventListener('keypress', function (event) {
+                    if (event.key === 'Enter') {
+                        unlockGift();
+                    }
+                });
+                passwordInput.focus();
+            }
+        });
+
         // Tab Navigation
         const navButtons = document.querySelectorAll('.nav-btn');
         const sections = document.querySelectorAll('.section');
@@ -1252,15 +1528,15 @@
         navButtons.forEach(btn => {
             btn.addEventListener('click', () => {
                 const tabName = btn.dataset.tab;
-                
+
                 // Remove active class from all buttons and sections
                 navButtons.forEach(b => b.classList.remove('active'));
                 sections.forEach(s => s.classList.remove('active'));
-                
+
                 // Add active class to clicked button and corresponding section
                 btn.classList.add('active');
                 document.getElementById(tabName).classList.add('active');
-                
+
                 // Scroll to top
                 window.scrollTo(0, 0);
             });
@@ -1271,7 +1547,7 @@
         const clickHint = document.getElementById('clickHint');
         let isOpened = false;
 
-        giftBox.addEventListener('click', function() {
+        giftBox.addEventListener('click', function () {
             if (!isOpened) {
                 isOpened = true;
                 giftBox.classList.add('opened');
@@ -1363,7 +1639,7 @@
             'Your Smile': 'Every time you smile, my heart skips a beat. That genuine, beautiful smile of yours lights up my entire world. It\'s the kind of smile that makes all my worries disappear instantly. I could fall in love with you all over again just from that smile.',
             'Your Laugh': 'That laugh is the most contagious, beautiful sound I\'ve ever heard. When you laugh genuinely, nothing else matters. I could listen to it forever and never get tired. You make me laugh too, and those are my favorite moments with you.',
             'Your Kindness': 'You have the biggest heart I\'ve ever known. The way you care about people, even strangers, shows what an incredible soul you are. Your kindness makes the world a better place, and it makes me want to be a better person too.',
-            'Your Intelligence': 'Your mind is brilliant and it amazes me every single day. The way you think, analyze, and understand things challenges me to be smarter. Your conversations inspire me and I learn so much from you, Aya.',
+            'Your Intelligence': 'Your mind is brilliant and it amazes me every single day. The way you think, analyze, and understand things challenges me to be smarter. Your conversations inspire me and I learn so much from you, My love.',
             'Your Beauty': 'You\'re absolutely stunning inside and out. But what truly makes you beautiful is your heart, your kindness, and your genuine spirit. When I look at you, I see perfection in every way.',
             'Your Strength': 'You\'re so much stronger than you give yourself credit for. I admire your resilience, your courage, and the way you face challenges head-on. You inspire me to be brave every single day.',
             'Your Creativity': 'The way you express yourself is truly unique and beautiful. Your creativity shows in everything you do—from your thoughts to your actions. It\'s one of the things I love most about you.',
@@ -1402,12 +1678,12 @@
             'Celebrating Life With You': 'Whether it\'s big milestones or small moments, celebrating life with you makes everything more meaningful and joyful.',
             'Your Optimism': 'You believe in better days ahead, and that optimism is contagious. You inspire me to stay hopeful no matter what.',
             'How You Transform Me': 'Since I\'ve been with you, I\'ve become a better version of myself. You have this incredible power to transform people into their best selves.',
-            'Your Talents': 'Whatever talents and abilities you have, I\'m amazed by them. You\'re so skilled and capable at so many things.',
+            'Your Talents': 'You are a genius!!! well, Whatever talents and abilities you have, I\'m amazed by them. You\'re so skilled and capable at so many things.',
             'You\'re My Star': 'You shine brighter than any star in the sky. You\'re my guiding light and my inspiration.',
-            'You\'re My Queen': 'You are royalty to me, Aya. You deserve to be treated like the queen you are, and I\'ll spend my life making sure you feel like one.',
+            'You\'re My Queen': 'You are royalty to me, my love. You deserve to be treated like the queen you are, and I\'ll spend my life making sure you feel like one.',
             'Your Love': 'The way you love is pure, genuine, and beautiful. Being loved by you is the greatest blessing I could ever ask for.',
             'I\'m Grateful': 'I\'m grateful for every single day I get to know you, talk to you, and love you. You\'ve made my life infinitely richer.',
-            'I Love You': 'At the end of the day, this is the simplest truth—I love you. Not because of what you do, but because of who you are. I love you, Aya.'
+            'I Love You': 'At the end of the day, this is the simplest truth—I love you. Not because of what you do, but because of who you are. I love you, baby.'
         };
 
         // Load all photos and videos dynamically
@@ -1532,7 +1808,7 @@
             mediaFiles.forEach(file => {
                 const card = document.createElement('div');
                 card.className = 'memory-card';
-                
+
                 if (file.endsWith('.mp4')) {
                     // Video card
                     card.style.position = 'relative';
@@ -1540,14 +1816,14 @@
                     video.className = 'memory-video';
                     video.src = `photos/${file}`;
                     video.controls = false;
-                    
+
                     const playButton = document.createElement('div');
                     playButton.className = 'video-play-button';
-                    
+
                     card.appendChild(video);
                     card.appendChild(playButton);
-                    
-                    card.addEventListener('click', function() {
+
+                    card.addEventListener('click', function () {
                         if (video.paused) {
                             video.play();
                             playButton.style.opacity = '0';
@@ -1561,10 +1837,10 @@
                     const img = document.createElement('img');
                     img.className = 'memory-image';
                     img.src = `photos/${file}`;
-                    img.alt = 'Aya';
+                    img.alt = 'My Love';
                     card.appendChild(img);
                 }
-                
+
                 memoriesGrid.appendChild(card);
             });
         }
@@ -1575,7 +1851,7 @@
             reasonCards.forEach((card, index) => {
                 card.classList.add('clickable-reason');
                 card.style.cursor = 'pointer';
-                card.onclick = function(e) {
+                card.onclick = function (e) {
                     e.stopPropagation();
                     openReasonModal(this);
                 };
@@ -1587,7 +1863,7 @@
             const title = element.querySelector('.reason-title').textContent;
             const emoji = element.querySelector('.reason-emoji').textContent;
             const message = reasonMessages[title] || 'You are absolutely incredible and I love you for so many reasons. ❤️';
-            
+
             document.getElementById('modalTitle').textContent = emoji + ' ' + title;
             document.getElementById('modalMessage').textContent = message;
             document.getElementById('reasonModal').classList.add('active');
@@ -1599,7 +1875,7 @@
         }
 
         // Close modal when clicking outside
-        window.onclick = function(event) {
+        window.onclick = function (event) {
             const modal = document.getElementById('reasonModal');
             if (event.target == modal) {
                 modal.classList.remove('active');
@@ -1608,7 +1884,7 @@
 
         // Initialize on DOM ready
         if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', function() {
+            document.addEventListener('DOMContentLoaded', function () {
                 loadMemories();
                 initializeReasons();
                 initCountdown();
@@ -1634,4 +1910,5 @@
         </div>
     </div>
 </body>
+
 </html>
